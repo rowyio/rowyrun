@@ -11,7 +11,7 @@ resource "google_service_account" "rowy_run_serviceAccount" {
   display_name = "Rowy Run service Account"
 }
 resource "google_project_iam_binding" "roles" {
-  project  = var.project_id
+  project  = var.project
   for_each = toset(local.required_roles)
   role     = each.key
   members = [
@@ -22,7 +22,7 @@ resource "google_project_iam_binding" "roles" {
 resource "google_cloud_run_service" "rowy-run" {
   name = "rowy-run"
   location = "us-central1"
-  project = var.project_id
+  project = var.project
    template {
     spec {
       containers {
