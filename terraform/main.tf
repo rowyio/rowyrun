@@ -28,6 +28,7 @@ resource "google_cloud_run_service" "rowy-run" {
       containers {
         image = "gcr.io/rowy-run/rowy-run:latest"
       }
+      allow_unauthenticated = true
       service_account_name = google_service_account.rowy_run_serviceAccount.email
     }
   }
@@ -36,6 +37,7 @@ resource "google_cloud_run_service" "rowy-run" {
     percent         = 100
     latest_revision = true
   }
+  
   depends_on = [
     google_service_account.rowy_run_serviceAccount
   ]
