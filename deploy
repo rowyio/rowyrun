@@ -1,0 +1,5 @@
+#!/bin/bash
+set -euxo pipefail
+
+docker pull gcr.io/rowy-run/rowy-run
+docker tag gcr.io/rowy-run/rowy-run gcr.io/${GOOGLE_CLOUD_PROJECT}/${K_SERVICE}

@@ -1,10 +1,5 @@
 {
-    "name": "boardingparty-minecraft",
-    "env": {
-        "TF_VAR_zone": {
-            "description": "Zone for disk and VM, e.g. europe-west1-c. Full list here https://console.cloud.google.com/compute/zones"
-        }
-    },
+    "name": "rowy-run",
     "build": {
         "skip": true
     },
@@ -12,7 +7,7 @@
         "prebuild": {
             "commands": [
                 "echo 'prebuild'",
-                "./fixTagRequirement"
+                "./deploy"
             ]
         },
         "postbuild": {
