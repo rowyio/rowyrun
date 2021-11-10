@@ -1,5 +1,5 @@
 {
-    "name": "rowy-run",
+    "name": "rowy-deploy",
     "build": {
         "skip": true
     },
