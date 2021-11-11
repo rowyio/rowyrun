@@ -1,7 +1,7 @@
 const client = require("firebase-tools");
 
-import { httpsPost } from "./utils";
-import { getGCPEmail } from "./utils";
+import { httpsPost } from "./utils.mjs";
+import { getGCPEmail } from "./utils.mjs";
 const hostname = "rowy.run";
 export const getRowyApp = (projectId) =>
   new Promise((resolve) => {
