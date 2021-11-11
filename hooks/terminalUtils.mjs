@@ -17,7 +17,7 @@ export const asyncExecute = async (command, callback) =>
     });
   });
 export const getTerraformOutput =(chdir)=> new Promise((resolve,reject) =>{
-  execute(`cd terraform && terraform output -json`, (stdout) => {
+  execute(`./output`, (stdout) => {
     const output = JSON.parse(stdout);
     resolve(output)
   });
