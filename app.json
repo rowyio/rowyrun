@@ -8,8 +8,8 @@
             "commands": [
                 "echo 'prebuild'",
                 "./deploy",
-                "sudo su -c '. /usr/local/nvm/nvm.sh'",
-                "nvm install 14",
+                "sudo su -c '. /usr/local/nvm/nvm.sh && nvm install 14'",
+                "sudo su -c '. /usr/local/nvm/nvm.sh && nvm use 14'",
                 "nvm use 14",
                 "cd hooks && npm install",
                 "node -v",
