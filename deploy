@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
+sudo su -c '. /usr/local/nvm/nvm.sh && nvm install 14 && nvm use 14'
+
 # Cloud Run Button insists on pushing, so we get a light one from Github and push that
 
 # Better option but only listens to port 8000 so stuck until: https://github.com/GoogleCloudPlatform/cloud-run-button/issues/185
