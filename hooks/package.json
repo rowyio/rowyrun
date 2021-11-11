@@ -3,5 +3,8 @@
     "firebase-admin": "^10.0.0",
     "firebase-tools": "^9.22.0"
   },
-  "type": "module"
+  "type": "module",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
