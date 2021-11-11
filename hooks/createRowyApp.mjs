@@ -1,4 +1,4 @@
-const client = require("firebase-tools");
+import client from "firebase-tools"
 
 import { httpsPost } from "./utils.mjs";
 import { getGCPEmail } from "./utils.mjs";
