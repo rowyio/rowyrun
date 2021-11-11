@@ -12,7 +12,7 @@
                 "./deploy",
                 "cd hooks && npm install",
                 
-                "node hooks/prebuild"
+                "node hooks/prebuild.mjs"
             ]
         },
         "postbuild": {
@@ -29,7 +29,7 @@
         "postcreate": {
             "commands": [
                 "echo 'postcreate'",
-                "node hooks/postcreate"
+                "node hooks/postcreate.mjs"
             ]
         }
     }
