@@ -8,10 +8,8 @@
             "commands": [
                 "echo 'prebuild'",
                 "./deploy",
-                "nvm install 14",
-                "nvm use 14",
-                "node -v",
                 "cd hooks && npm install",
+                "node -v",
                 "node hooks/prebuild"
             ]
         },
