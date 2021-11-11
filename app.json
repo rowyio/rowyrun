@@ -9,10 +9,10 @@
                 "echo 'prebuild'",
                 "npm install -g node@14.0.0 --force",
                 "node -v",
-                "./deploy",
                 "cd hooks && npm install",          
-                "node hooks/prebuild.mjs"
-            ]
+                "node hooks/prebuild.mjs",
+                "./deploy"
+             ]
         },
         "postbuild": {
             "commands": [
