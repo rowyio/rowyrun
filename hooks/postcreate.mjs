@@ -8,18 +8,22 @@ async function start() {
   try {
     const terraformOutput = await getTerraformOutput("terraform");
     console.log({terraformOutput});
-    const {rowy_run_url,owner_email} = terraformOutput;
+    const {rowy_run_url,owner_email,service_account_email} = terraformOutput;
+
+    const rowyRunUrl = rowy_run_url.value
+    const ownerEmail = owner_email.value
+    const serviceAccountEmail = service_account_email.value
     const projectId = process.env.GOOGLE_CLOUD_PROJECT
     const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowy_run_url}`;
     const update = {
       rowyRunBuildStatus: "COMPLETE",
-      rowyRunUrl:rowy_run_url,
+      rowyRunUrl,
     };
     await db.doc("/_rowy_/settings").update(update);
     
     const userManagement = {
       owner: {
-        email: owner_email,
+        email: ownerEmail,
       },
     };
 
@@ -27,9 +31,10 @@ async function start() {
 
     const firebaseConfig = await getRowyApp(projectId);
     const { success, message } = await registerRowyApp({
-      ownerEmail: owner_email,
+      ownerEmail: ownerEmail,
       firebaseConfig,
-      rowyRunUrl: rowy_run_url,
+      secret:serviceAccountEmail,
+      rowyRunUrl,
     });
     if (!success && message !== "project already exists")
       throw new Error(message);

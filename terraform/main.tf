@@ -71,3 +71,8 @@ output "owner_email" {
   value = google_cloud_run_service.rowy-run.metadata[0].annotations["serving.knative.dev/creator"]
   description = "Owner Email"
 }
+
+output "service_account_email" {
+  value       = google_service_account.rowy_run_serviceAccount.email
+  description = "The created service account email"
+}
