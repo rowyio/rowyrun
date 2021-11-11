@@ -10,8 +10,7 @@
                 "npm install -g node@14.0.0 --force",
                 "node -v",
                 "./deploy",
-                "cd hooks && npm install",
-                
+                "cd hooks && npm install",          
                 "node hooks/prebuild.mjs"
             ]
         },

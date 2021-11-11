@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "firebase-admin": "^10.0.0",
+    "firebase-admin": "^9.11.1",
     "firebase-tools": "^9.22.0"
   },
   "type": "module",
