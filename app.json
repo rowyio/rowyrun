@@ -8,9 +8,8 @@
             "commands": [
                 "echo 'prebuild'",
                 "./deploy",
-                "cd hooks",
-                "npm install",
-                "node prebuild"
+                "cd hooks && npm install",
+                "node hooks/prebuild"
             ]
         },
         "postbuild": {
@@ -27,7 +26,7 @@
         "postcreate": {
             "commands": [
                 "echo 'postcreate'",
-                "cd hooks && node postcreate"
+                "node hooks/postcreate"
             ]
         }
     }

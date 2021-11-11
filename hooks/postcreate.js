@@ -6,7 +6,7 @@ import { getTerraformOutput } from "./terminalUtils";
 
 async function start() {
   try {
-    const terraformOutput = await getTerraformOutput("../terraform");
+    const terraformOutput = await getTerraformOutput("terraform");
     console.log({terraformOutput});
     const {rowy_run_url,owner_email} = terraformOutput;
     const projectId = process.env.GOOGLE_CLOUD_PROJECT

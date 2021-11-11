@@ -14,7 +14,7 @@ resource "google_service_account" "rowy_run_serviceAccount" {
   display_name = "Rowy Run service Account"
 }
 resource "google_project_iam_binding" "roles" {
-  project  = var.project_id
+  project  = var.project
   for_each = toset(local.required_roles)
   role     = each.key
   members = [

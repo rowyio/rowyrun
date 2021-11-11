@@ -1,4 +1,3 @@
-import { getProjectId } from "./utils";
 import { db } from "./firebaseConfig";
 import { logError } from "./createRowyApp";
 import { setupFirestore } from "./setupFirestore";

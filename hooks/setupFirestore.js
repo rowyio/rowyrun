@@ -21,7 +21,7 @@ const firestoreExists = async() =>{
 export const setupFirestore = () => {
     if(!firestoreExists()){
     const firestoreRegion = regionConverter(process.env.GOOGLE_CLOUD_REGION, firestoreRegions);
-    return asyncExecute(`terraform -chdir=../terraform-firestore -var="project_id=${process.env.GOOGLE_CLOUD_PROJECT}" -var="region=${firestoreRegion}"`, (stdout) => {});
+    return asyncExecute(`terraform -chdir=terraform-firestore -var="project_id=${process.env.GOOGLE_CLOUD_PROJECT}" -var="region=${firestoreRegion}"`, (stdout) => {});
     } else {
       console.log("Firestore already exists");
       return false
