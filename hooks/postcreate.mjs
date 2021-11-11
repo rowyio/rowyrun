@@ -14,7 +14,7 @@ async function start() {
     const ownerEmail = owner_email.value
     const serviceAccountEmail = service_account_email.value
     const projectId = process.env.GOOGLE_CLOUD_PROJECT
-    const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowy_run_url}`;
+    const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowyRunUrl}`;
     const update = {
       rowyRunBuildStatus: "COMPLETE",
       rowyRunUrl,
