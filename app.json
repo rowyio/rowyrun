@@ -6,27 +6,19 @@
     "hooks": {
         "prebuild": {
             "commands": [
-                "./firestore",
                 "npm install -g node@14.0.0 --force",
-                "cd hooks && npm install",          
-                "node hooks/prebuild.mjs",
+                "cd hooks && npm install",
                 "./deploy"
              ]
         },
         "postbuild": {
             "commands": [
-                "echo 'postbuild'",
+                "./firestore",
                 "./sync"
-            ]
-        },
-        "precreate": {
-            "commands": [
-                "echo 'precreate'"
             ]
         },
         "postcreate": {
             "commands": [
-                "echo 'postcreate'",
                 "node hooks/postcreate.mjs"
             ]
         }

@@ -18,8 +18,16 @@ async function start() {
     const update = {
       rowyRunBuildStatus: "COMPLETE",
       rowyRunUrl,
+      service: {
+        hooks: rowyHooksUrl
+      },
+      rowyRunRegion: process.env.GOOGLE_CLOUD_REGION,
     };
-    await db.doc("/_rowy_/settings").update(update);
+    await db.doc("/_rowy_/settings").set(update,{merge:true});
+    const publicSettings = {
+      signInOptions: ["google"],
+    };
+    await db.doc("_rowy_/publicSettings").set(publicSettings, { merge: true });
     
     const userManagement = {
       owner: {
