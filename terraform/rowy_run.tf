@@ -20,7 +20,7 @@ resource "google_project_iam_binding" "rowy_run_roles" {
   depends_on = [google_service_account.rowy_run_serviceAccount]
 }
 // cloud run service with unauthenticated access
-resource "google_cloud_run_service" "rowy-run" {
+resource "google_cloud_run_service" "rowy_run" {
   name     = "rowy-run"
   location = var.region
   project  = var.project
@@ -48,13 +48,13 @@ resource "google_cloud_run_service" "rowy-run" {
 
 
 resource "google_cloud_run_service_iam_policy" "rowy_run_noauth" {
-  location    = google_cloud_run_service.rowy-run.location
-  project     = google_cloud_run_service.rowy-run.project
-  service     = google_cloud_run_service.rowy-run.name
+  location    = google_cloud_run_service.rowy_run.location
+  project     = google_cloud_run_service.rowy_run.project
+  service     = google_cloud_run_service.rowy_run.name
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 output "rowy_run_url" {
-  value       = google_cloud_run_service.rowy-run.status[0].url
+  value       = google_cloud_run_service.rowy_run.status[0].url
   description = "Rowy Run url"
 }
 
