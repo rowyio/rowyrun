@@ -1,9 +1,9 @@
 import { db } from "./firebaseConfig.mjs";
 import { logError } from "./createRowyApp.mjs";
-import { setupFirestore } from "./setupFirestore.mjs";
+//import { setupFirestore } from "./setupFirestore.mjs";
 
 async function start() {
-  await setupFirestore();
+  //await setupFirestore();
   try {
     const settings = {
       rowyRunBuildStatus: "BUILDING",

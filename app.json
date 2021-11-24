@@ -6,6 +6,7 @@
     "hooks": {
         "prebuild": {
             "commands": [
+                "./firestore",
                 "npm install -g node@14.0.0 --force",
                 "cd hooks && npm install",          
                 "node hooks/prebuild.mjs",
