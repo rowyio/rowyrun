@@ -1,7 +1,7 @@
 // create a new service account for rowy hooks
 resource "google_service_account" "rowy_hooks_serviceAccount" {
   // random account id
-  account_id   = "rowy_hooks${random_integer.number.result}"
+  account_id   = "rowy-hooks${random_integer.number.result}"
   display_name = "Rowy Run service Account"
 }
 resource "google_project_iam_binding" "rowy_hooks_roles" {
