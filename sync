@@ -25,3 +25,15 @@ docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform:/workpace" -w /workpace \
            -t hashicorp/terraform:light apply --auto-approve
             
+# Terraform init
+docker run --env-file <(env | grep TF_VAR) \
+           -v "$(pwd)/terraform-firestore:/workpace" -w /workpace \
+           -t hashicorp/terraform:light init \
+           -backend-config "bucket=$TF_VAR_tf_state_bucket" \
+           -backend-config "prefix=firestore/$TF_VAR_environment"
+           
+# Terraform apply --auto-approve
+docker run --env-file <(env | grep TF_VAR) \
+           -v "$(pwd)/terraform-firestore:/workpace" -w /workpace \
+           -t hashicorp/terraform:light apply --auto-approve
+            

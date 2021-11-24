@@ -13,9 +13,7 @@
         },
         "postbuild": {
             "commands": [
-                "./sync",
-                "./firestore"
-               
+                "./sync"           
             ]
         },
         "postcreate": {
