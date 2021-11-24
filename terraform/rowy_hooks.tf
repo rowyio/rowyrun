@@ -21,7 +21,7 @@ resource "google_cloud_run_service" "rowy_hooks" {
   template {
     spec {
       containers {
-        image = "gcr.io/rowy-run/rowy_hooks:latest"
+        image = "gcr.io/rowy-run/rowy-hooks:latest"
         ports {
           container_port = 8080
         }
@@ -50,7 +50,7 @@ output "rowy_hooks_url" {
   value       = google_cloud_run_service.rowy_hooks.status[0].url
   description = "Rowy Hooks url"
 }
-# output "rowy_hooks_service_account_email" {
-#   value       = google_service_account.rowy_hooks_serviceAccount.email
-#   description = "The created service account email"
-# }
+output "rowy_hooks_service_account_email" {
+  value       = google_service_account.rowy_hooks_serviceAccount.email
+  description = "The created service account email"
+}
