@@ -15,7 +15,7 @@ resource "google_project_iam_binding" "rowy_hooks_roles" {
 }
 // cloud run service with unauthenticated access
 resource "google_cloud_run_service" "rowy_hooks" {
-  name     = "rowy_hooks"
+  name     = "rowy-hooks"
   location = var.region
   project  = var.project
   template {
