@@ -9,7 +9,7 @@
                 "npm install -g node@14.0.0 --force",
                 "cd hooks && npm install",
                 "./deploy"
-             ]
+            ]
         },
         "postbuild": {
             "commands": [
