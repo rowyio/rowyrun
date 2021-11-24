@@ -12,7 +12,6 @@ async function start() {
 
     const rowyRunUrl = rowy_run_url.value
     const ownerEmail = owner_email.value
-    const serviceAccountEmail = service_account_email.value
     const projectId = process.env.GOOGLE_CLOUD_PROJECT
     const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowyRunUrl}`;
     const update = {
@@ -33,7 +32,7 @@ async function start() {
     const { success, message } = await registerRowyApp({
       ownerEmail: ownerEmail,
       firebaseConfig,
-      secret:serviceAccountEmail,
+      secret:"NA",
       rowyRunUrl,
     });
     if (!success && message !== "project already exists")
