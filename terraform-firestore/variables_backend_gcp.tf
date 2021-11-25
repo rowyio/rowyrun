@@ -13,6 +13,9 @@ variable "application" {
 variable "region" {
   type = string
 }
+variable "firestore_region" {
+  type = string
+}
 
 variable "environment" {
   type = string

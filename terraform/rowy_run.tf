@@ -1,9 +1,3 @@
-
-
-# Create app engine application if it doesnt exist
-// create a cloud run service prebuilt image
-
-
 // create a new service account for rowy run
 resource "google_service_account" "rowy_run_serviceAccount" {
   // random account id
@@ -58,7 +52,7 @@ output "rowy_run_url" {
   description = "Rowy Run url"
 }
 
-# output "service_account_email" {
-#   value       = google_service_account.rowy_run_serviceAccount.email
-#   description = "The created service account email"
-# }
+output "rowy_run_service_account_email" {
+  value       = google_service_account.rowy_run_serviceAccount.email
+  description = "The created service account email"
+}

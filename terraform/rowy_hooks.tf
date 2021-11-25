@@ -21,7 +21,7 @@ resource "google_cloud_run_service" "rowy_hooks" {
   template {
     spec {
       containers {
-        image = "gcr.io/rowy-run/rowy-hooks:latest"
+        image = "gcr.io/rowy-run/rowy-hooks@sha256:5fd759afaa20ddb7f5c44a2a46ee298c5eb892a3ec7a31da63a1987d2c1bb09c"
         ports {
           container_port = 8080
         }
