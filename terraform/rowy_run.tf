@@ -21,7 +21,7 @@ resource "google_cloud_run_service" "rowy_run" {
   template {
     spec {
       containers {
-        image = "gcr.io/rowy-run/rowy-run@sha256:813ad4bef930a495665bd2a6df298d50b542f69afed56e42bf751e8837ea8ea6"
+        image = "gcr.io/rowy-run/rowy-run@sha256:671de15b1abcc175eb5077196e37617ff64ab510966a71c6838c74f1eaa2d890"
         ports {
           container_port = 8080
         }

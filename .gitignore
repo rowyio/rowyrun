@@ -1,1 +1,4 @@
 hooks/node_modules
+run/node_modules
+run/build
+run/firebase-adminsdk*.json

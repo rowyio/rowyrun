@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
-# Cloud Run Button insists on pushing, so we get a light one from Github and push that
 
-# Better option but only listens to port 8000 so stuck until: https://github.com/GoogleCloudPlatform/cloud-run-button/issues/185
-# docker pull crccheck/hello-world
-# docker tag crccheck/hello-world gcr.io/${GOOGLE_CLOUD_PROJECT}/${K_SERVICE}
-docker pull gcr.io/cloudrun/hello
-docker tag gcr.io/cloudrun/hello gcr.io/${GOOGLE_CLOUD_PROJECT}/${K_SERVICE}
+# pull and deploy rowy-run/deploy image 
+docker pull gcr.io/rowy-run/deploy
+docker tag gcr.io/rowy-run/deploy gcr.io/${GOOGLE_CLOUD_PROJECT}/${K_SERVICE}
