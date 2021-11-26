@@ -1,17 +1,11 @@
 // create a new service account for rowy run
+
+// import existing cloud run service
+
 resource "google_service_account" "rowy_run_serviceAccount" {
   // random account id
   account_id   = "rowy-run${random_integer.number.result}"
   display_name = "Rowy Run service Account"
-}
-resource "google_project_iam_binding" "rowy_run_roles" {
-  project  = var.project
-  for_each = toset(local.rowy_run_required_roles)
-  role     = each.key
-  members = [
-    "serviceAccount:${google_service_account.rowy_run_serviceAccount.email}",
-  ]
-  depends_on = [google_service_account.rowy_run_serviceAccount]
 }
 // cloud run service with unauthenticated access
 resource "google_cloud_run_service" "rowy_run" {

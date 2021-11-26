@@ -2,16 +2,7 @@
 resource "google_service_account" "rowy_hooks_serviceAccount" {
   // random account id
   account_id   = "rowy-hooks${random_integer.number.result}"
-  display_name = "Rowy Run service Account"
-}
-resource "google_project_iam_binding" "rowy_hooks_roles" {
-  project  = var.project
-  for_each = toset(local.rowy_hooks_required_roles)
-  role     = each.key
-  members = [
-    "serviceAccount:${google_service_account.rowy_hooks_serviceAccount.email}",
-  ]
-  depends_on = [google_service_account.rowy_hooks_serviceAccount]
+  display_name = "Rowy Hooks service Account"
 }
 // cloud run service with unauthenticated access
 resource "google_cloud_run_service" "rowy_hooks" {
