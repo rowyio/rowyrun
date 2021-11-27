@@ -1,34 +1,24 @@
 import { db } from "./firebaseConfig.mjs";
 import { logo } from "./asciiLogo.mjs";
-import { getRowyApp, registerRowyApp,logError } from "./createRowyApp.mjs";
+import { getRowyApp, registerRowyApp, logError } from "./createRowyApp.mjs";
 import { getTerraformOutput } from "./terminalUtils.mjs";
-
 
 async function start() {
   try {
     const terraformOutput = await getTerraformOutput("terraform");
-    console.log({terraformOutput});
-    const {rowy_run_url,owner_email,service_account_email,rowy_hooks_url} = terraformOutput;
+    console.log({ terraformOutput });
+    const { rowy_run_url, owner_email, rowy_hooks_url } = terraformOutput;
 
-    const rowyRunUrl = rowy_run_url.value
-    const rowyHooksUrl = rowy_hooks_url.value
-    const ownerEmail = owner_email.value
-    const projectId = process.env.GOOGLE_CLOUD_PROJECT
+    const rowyRunUrl = rowy_run_url.value;
+    const rowyHooksUrl = rowy_hooks_url.value;
+    const ownerEmail = owner_email.value;
+    const projectId = process.env.GOOGLE_CLOUD_PROJECT;
     const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowyRunUrl}`;
-    const update = {
-      rowyRunBuildStatus: "COMPLETE",
-      rowyRunUrl,
-      service: {
-        hooks: rowyHooksUrl
-      },
-      rowyRunRegion: process.env.GOOGLE_CLOUD_REGION,
-    };
-    await db.doc("/_rowy_/settings").set(update,{merge:true});
     const publicSettings = {
       signInOptions: ["google"],
     };
     await db.doc("_rowy_/publicSettings").set(publicSettings, { merge: true });
-    
+
     const userManagement = {
       owner: {
         email: ownerEmail,
@@ -41,11 +31,10 @@ async function start() {
     const { success, message } = await registerRowyApp({
       ownerEmail: ownerEmail,
       firebaseConfig,
-      secret:"NA",
       rowyRunUrl,
-      service:{
-        hooks:rowyHooksUrl
-      }
+      service: {
+        hooks: rowyHooksUrl,
+      },
     });
     if (!success && message !== "project already exists")
       throw new Error(message);

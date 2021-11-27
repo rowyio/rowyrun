@@ -1,25 +1,21 @@
 {
-    "name": "rowy-deploy",
-    "build": {
-        "skip": true
+  "name": "rowy-deploy",
+  "build": {
+    "skip": true
+  },
+  "hooks": {
+    "prebuild": {
+      "commands": [
+        "npm install -g node@14.0.0 --force",
+        "cd hooks && npm install",
+        "./deploy"
+      ]
     },
-    "hooks": {
-        "prebuild": {
-            "commands": [
-                "npm install -g node@14.0.0 --force",
-                "cd hooks && npm install",
-                "./deploy"
-            ]
-        },
-        "postbuild": {
-            "commands": [
-                "./sync"           
-            ]
-        },
-        "postcreate": {
-            "commands": [
-                "node hooks/postcreate.mjs"
-            ]
-        }
+    "postbuild": {
+      "commands": ["./sync", "node hooks/setUrls.mjs"]
+    },
+    "postcreate": {
+      "commands": ["node hooks/postcreate.mjs"]
     }
+  }
 }
