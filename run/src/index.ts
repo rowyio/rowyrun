@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { getProjectId } from "./metadataService";
-import {db} from './firebaseConfig'
+import { db } from "./firebaseConfig";
 const app = express();
 // json is the default content-type for POST requests
 app.use(express.json());
@@ -25,3 +25,9 @@ app.get("/", async (req, res) => {
     res.redirect(`https://${projectId}.rowy.app/setup`);
   }
 });
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Rowy-deploy: listening on port ${port}!`);
+});
+// Exports for testing purposes.
+module.exports = app;
