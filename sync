@@ -13,6 +13,16 @@ export TF_VAR_firestore_region=$(node getFirestoreRegion ${GOOGLE_CLOUD_REGION})
 # Create bucket if not exists
 gsutil ls -b "gs://${TF_VAR_tf_state_bucket}" || gsutil mb -p "${GOOGLE_CLOUD_PROJECT}" -l "${TF_VAR_region}" "gs://${TF_VAR_tf_state_bucket}"
 
+# set project
+gcloud config set project $GOOGLE_CLOUD_PROJECT
+
+# enable firestore
+gcloud services enable firestore.googleapis.com
+
+# delete existing cloud run services
+gcloud beta run services delete rowy-run
+gcloud beta run services delete rowy-hooks
+
 # Terraform init
 docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform:/workpace" -w /workpace \
@@ -24,11 +34,6 @@ docker run --env-file <(env | grep TF_VAR) \
 docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform:/workpace" -w /workpace \
            -t hashicorp/terraform:light apply --auto-approve
-
-# enable firestore
-gcloud config set project $GOOGLE_CLOUD_PROJECT
-gcloud services enable firestore.googleapis.com
-
 # Terraform init
 docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform-firestore:/workpace" -w /workpace \
