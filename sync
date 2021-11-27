@@ -20,6 +20,7 @@ gcloud config set project $GOOGLE_CLOUD_PROJECT
 gcloud services enable firestore.googleapis.com
 
 # delete existing cloud run services
+gcloud beta run services delete rowy-deploy
 gcloud beta run services delete rowy-run
 gcloud beta run services delete rowy-hooks
 
