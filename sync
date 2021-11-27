@@ -16,9 +16,11 @@ gsutil ls -b "gs://${TF_VAR_tf_state_bucket}" || gsutil mb -p "${GOOGLE_CLOUD_PR
 # set project
 gcloud config set project $GOOGLE_CLOUD_PROJECT
 # enable firestore
-gcloud services enable firestore.googleapis.com || :
-gcloud app create --region=$TF_VAR_firestore_region || :
-gcloud firestore databases create --region=$TF_VAR_firestore_region || :
+set +e
+gcloud services enable firestore.googleapis.com
+gcloud app create --region=$TF_VAR_firestore_region
+gcloud firestore databases create --region=$TF_VAR_firestore_region
+set -e
 
 # delete existing cloud run services
 # gcloud beta run services delete rowy-deploy --platform=managed
