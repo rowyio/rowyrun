@@ -14,7 +14,7 @@ async function start() {
     const update = {
       rowyRunBuildStatus: "COMPLETE",
       rowyRunUrl,
-      service: {
+      services: {
         hooks: rowyHooksUrl,
       },
       rowyRunRegion: process.env.GOOGLE_CLOUD_REGION,
