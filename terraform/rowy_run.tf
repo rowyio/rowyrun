@@ -16,8 +16,15 @@ resource "google_cloud_run_service" "rowy_run" {
     spec {
       containers {
         image = local.rowy_run_image
+
         ports {
           container_port = 8080
+        }
+        resources {
+          limits {
+            cpu    = "1000m"
+            memory = "1Gi"
+          }
         }
       }
       service_account_name = google_service_account.rowy_run_serviceAccount.email
