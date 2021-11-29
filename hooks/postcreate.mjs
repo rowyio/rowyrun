@@ -13,7 +13,8 @@ async function start() {
     const rowyHooksUrl = rowy_hooks_url.value;
     const ownerEmail = owner_email.value;
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
-    const rowyAppURL = `https://${projectId}.rowy.app/setup?rowyRunUrl=${rowyRunUrl}`;
+    const rowyAppURL = `https://${projectId}.rowy.app`;
+    const setupURL = `${setupURL}/setup?rowyRunUrl=${rowyRunUrl}`;
     const publicSettings = {
       signInOptions: ["google"],
     };
@@ -39,13 +40,27 @@ async function start() {
     if (!success && message !== "project already exists")
       throw new Error(message);
     console.log(logo);
+
+    const rowySettingsDoc = await db.doc("_rowy_/settings").get();
+    const rowySettings = rowySettingsDoc.data();
+    const { setupCompleted } = rowySettings;
+
     console.log(
-      `
+      setupCompleted
+        ? `
   🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
   🟩  🎊  Successfully deployed Rowy Run 🎊                                                  🟩
   🟩                                                                                       🟩
   🟩  Continue the setup process by going to the link below:                               🟩
-  🟩  👉 ${rowyAppURL}  🟩
+  🟩  👉 ${setupURL}  
+  🟩                                                                                       🟩
+  🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩`
+        : `
+  🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩
+  🟩  🎊  Successfully Updated Rowy Run 🎊                                                   🟩
+  🟩                                                                                       🟩
+  🟩  You can go back to your rowy project link below:                               
+  🟩  👉 ${rowyAppURL}  
   🟩                                                                                       🟩
   🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩`
     );
