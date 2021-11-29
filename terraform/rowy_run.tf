@@ -22,8 +22,8 @@ resource "google_cloud_run_service" "rowy_run" {
         }
         resources {
           limits = {
-            cpu    = "1000m"
-            memory = "1Gi"
+            cpu    = "2000m"
+            memory = "2Gi"
             } 
         }
       }
