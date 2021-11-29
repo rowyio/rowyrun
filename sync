@@ -22,10 +22,6 @@ gcloud app create --region=$TF_VAR_firestore_region
 gcloud firestore databases create --region=$TF_VAR_firestore_region
 set -e
 
-# delete existing cloud run services
-# gcloud beta run services delete rowy-deploy --platform=managed
-# gcloud beta run services delete rowy-run --platform=managed
-# gcloud beta run services delete rowy-hooks --platform=managed
 
 # Terraform init
 docker run --env-file <(env | grep TF_VAR) \
@@ -33,7 +29,15 @@ docker run --env-file <(env | grep TF_VAR) \
            -t hashicorp/terraform:light init \
            -backend-config "bucket=$TF_VAR_tf_state_bucket" \
            -backend-config "prefix=$TF_VAR_application/$TF_VAR_environment"
-           
+
+# delete existing cloud run services
+set +e
+gcloud run services delete rowy-run -q
+set -e
+set +e
+gcloud run services delete rowy-hooks -q
+set -e
+
 # Terraform apply --auto-approve
 docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform:/workpace" -w /workpace \
