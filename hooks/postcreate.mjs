@@ -7,9 +7,10 @@ async function start() {
   try {
     const terraformOutput = await getTerraformOutput("terraform");
     console.log({ terraformOutput });
-    const { rowy_run_url, owner_email, rowy_hooks_url } = terraformOutput;
+    const { rowy_backend_url, owner_email, rowy_hooks_url } = terraformOutput;
 
-    const rowyRunUrl = rowy_run_url.value;
+    const rowyRunUrl = rowy_backend_url.value;
+    const rowyBackendUrl = rowy_backend_url.value;
     const rowyHooksUrl = rowy_hooks_url.value;
     const ownerEmail = owner_email.value;
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
@@ -35,6 +36,7 @@ async function start() {
       rowyRunUrl,
       service: {
         hooks: rowyHooksUrl,
+        backend:rowyBackendUrl
       },
     });
     if (!success && message !== "project already exists")

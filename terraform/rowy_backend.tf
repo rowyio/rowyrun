@@ -50,7 +50,7 @@ resource "google_cloud_run_service_iam_policy" "rowy_backend_noauth" {
 }
 output "rowy_backend_url" {
   value       = google_cloud_run_service.rowy_backend.status[0].url
-  description = "Rowy Run url"
+  description = "Rowy Backend url"
 }
 
 output "rowy_backend_service_account_email" {
