@@ -6,4 +6,4 @@ Click the deploy button below to get started.
 
 [![Deploy to Google Cloud Run](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/rowyio/rowyrun.git)
 
-### [Read the documentation →](https://docs.rowy.io/rowy-run)
+### [Read the documentation →](https://docs.rowy.io/rowyrun)
