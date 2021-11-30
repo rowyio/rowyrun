@@ -11,6 +11,6 @@ data "google_iam_policy" "noauth" {
   }
 }
 output "owner_email" {
-  value       = google_cloud_run_service.rowy_run.metadata[0].annotations["serving.knative.dev/creator"]
+  value       = google_cloud_run_service.rowy_backend.metadata[0].annotations["serving.knative.dev/creator"]
   description = "Owner Email"
 }
