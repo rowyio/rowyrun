@@ -15,7 +15,7 @@ async function start() {
     const ownerEmail = owner_email.value;
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
     const rowyAppURL = `https://${projectId}.rowy.app`;
-    const setupURL = `${setupURL}/setup?rowyRunUrl=${rowyRunUrl}`;
+    const setupURL = `${rowyAppURL}/setup?rowyRunUrl=${rowyRunUrl}`;
     const publicSettings = {
       signInOptions: ["google"],
     };
