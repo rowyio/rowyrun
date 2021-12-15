@@ -27,6 +27,17 @@ resource "google_project_iam_binding" "storage_object_admin" {
   ]
   depends_on = [google_service_account.rowy_backend_serviceAccount,google_service_account.rowy_hooks_serviceAccount]
 }
+
+resource "google_project_iam_binding" "storage_object_admin" {
+  project  = var.project
+  role     = "roles/storage.objectAdmin"
+  members = [
+    "serviceAccount:${google_service_account.rowy_hooks_serviceAccount.email}",
+    "serviceAccount:${google_service_account.rowy_backend_serviceAccount.email}",
+  ]
+  depends_on = [google_service_account.rowy_backend_serviceAccount,google_service_account.rowy_hooks_serviceAccount]
+}
+
 resource "google_project_iam_binding" "iam_serviceAccountUser_role" {
   project  = var.project
   role     ="roles/iam.serviceAccountUser"
