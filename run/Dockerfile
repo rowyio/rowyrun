@@ -1,10 +1,21 @@
-FROM node:14-slim
+FROM node:16-slim
 
 # Create and change to the app directory.
 WORKDIR /workdir
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
-# Copying this first prevents re-running npm install on every code change.
+
+RUN \
+# Update
+apt-get update -y && \
+# Install curl
+apt-get install curl -y && \
+# Install python
+apt-get install python -y 
+
+
+
+RUN curl -sSL https://sdk.cloud.google.com | bash
+ENV PATH $PATH:/root/google-cloud-sdk/bin
+
 COPY package*.json ./
 COPY . ./
 # Install production dependencies.

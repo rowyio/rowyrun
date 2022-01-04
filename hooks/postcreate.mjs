@@ -48,10 +48,6 @@ async function start() {
     const rowySettings = rowySettingsDoc.data();
     const { setupCompleted } = rowySettings;
 
-    await asyncExecute(
-      `gcloud run services update rowy-builder --service-account rowy-builder@${process.env.GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --platform managed --region ${process.env.GOOGLE_CLOUD_REGION}`,
-      (stdout) => {}
-    );
     console.log(
       setupCompleted
         ? `
@@ -70,6 +66,10 @@ async function start() {
   🟩  👉 ${setupURL}  
   🟩                                                                                       🟩
   🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩`
+    );
+    await asyncExecute(
+      `gcloud run services update rowy-builder --service-account rowy-builder@${process.env.GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --platform managed --region ${process.env.GOOGLE_CLOUD_REGION}`,
+      (stdout) => {}
     );
   } catch (error) {
     console.log(error);
