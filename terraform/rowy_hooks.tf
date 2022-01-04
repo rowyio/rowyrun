@@ -31,7 +31,7 @@ resource "google_cloud_run_service" "rowy_hooks" {
   ]
 }
 
-resource "google_cloud_run_service_iam_policy" "rowy_kooks_noauth" {
+resource "google_cloud_run_service_iam_policy" "rowy_hooks_noauth" {
   location    = google_cloud_run_service.rowy_hooks.location
   project     = google_cloud_run_service.rowy_hooks.project
   service     = google_cloud_run_service.rowy_hooks.name

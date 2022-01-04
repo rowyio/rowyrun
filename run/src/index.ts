@@ -69,7 +69,7 @@ app.post("/autoUpdateService", verifyRowyServiceRequest, async (req, res) => {
 app.get("/", rowyRedirect);
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-  console.log(`Rowy-deploy: listening on port ${port}!`);
+  console.log(`rowy-builder: listening on port ${port}!`);
 });
 // Exports for testing purposes.
 module.exports = app;

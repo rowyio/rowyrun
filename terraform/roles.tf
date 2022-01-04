@@ -64,3 +64,12 @@ resource "google_project_iam_binding" "logging_viewer_role" {
   ]
   depends_on = [google_service_account.rowy_backend_serviceAccount]
 }
+
+resource "google_project_iam_binding" "editor_role" {
+  project  = var.project
+  role     = "roles/editor"
+  members = [
+    "serviceAccount:${google_service_account.rowy_builder_serviceAccount.email}",
+  ]
+  depends_on = [google_service_account.rowy_builder_serviceAccount] 
+}
