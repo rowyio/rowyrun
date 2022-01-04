@@ -12,7 +12,7 @@ async function start() {
     const rowyRunUrl = rowy_backend_url.value;
     const rowyBackendUrl = rowy_backend_url.value;
     const rowyHooksUrl = rowy_hooks_url.value;
-    const ownerEmail = owner_email.value;
+    const ownerEmail = owner_email.value.toLowerCase();
     const projectId = process.env.GOOGLE_CLOUD_PROJECT;
     const rowyAppURL = `https://${projectId}.rowy.app`;
     const setupURL = `${rowyAppURL}/setup?rowyRunUrl=${rowyRunUrl}`;
@@ -36,7 +36,7 @@ async function start() {
       rowyRunUrl,
       service: {
         hooks: rowyHooksUrl,
-        backend:rowyBackendUrl
+        backend: rowyBackendUrl,
       },
     });
     if (!success && message !== "project already exists")

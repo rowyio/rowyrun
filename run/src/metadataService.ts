@@ -21,6 +21,8 @@ export const getProjectId = async () =>
 export const getNumericProjectId = async () =>
   (await axiosInstance.get("computeMetadata/v1/project/numeric-project-id"))
     .data;
+export const getRegion = async () =>
+  (await axiosInstance.get("computeMetadata/v1/instance/region")).data;
 
 export const generateServiceAccessToken = async (audience) =>
   (
@@ -28,4 +30,3 @@ export const generateServiceAccessToken = async (audience) =>
       `computeMetadata/v1/instance/service-accounts/default/identity?audience=${audience}`
     )
   ).data;
-//https://www.googleapis.com/oauth2/v1/certs
