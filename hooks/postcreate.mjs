@@ -49,7 +49,7 @@ async function start() {
     const { setupCompleted } = rowySettings;
 
     await asyncExecute(
-      `gcloud run services update rowy-builder --service-account rowy-builder@${process.env.GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --platform managed`,
+      `gcloud run services update rowy-builder --service-account rowy-builder@${process.env.GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --platform managed --region ${process.env.GOOGLE_CLOUD_REGION}`,
       (stdout) => {}
     );
     console.log(
