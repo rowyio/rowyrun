@@ -1,7 +1,7 @@
 import { db } from "./firebaseConfig.mjs";
 import { logo } from "./asciiLogo.mjs";
 import { getRowyApp, registerRowyApp, logError } from "./createRowyApp.mjs";
-import { getTerraformOutput } from "./terminalUtils.mjs";
+import { asyncExecute, getTerraformOutput } from "./terminalUtils.mjs";
 
 async function start() {
   try {
@@ -48,6 +48,10 @@ async function start() {
     const rowySettings = rowySettingsDoc.data();
     const { setupCompleted } = rowySettings;
 
+    await asyncExecute(
+      `gcloud run services update rowy-builder --service-account rowy-builder@${process.env.GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --platform managed`,
+      (stdout) => {}
+    );
     console.log(
       setupCompleted
         ? `

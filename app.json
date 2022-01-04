@@ -15,10 +15,7 @@
       "commands": ["./sync", "node hooks/setUrls.mjs"]
     },
     "postcreate": {
-      "commands": [
-        "node hooks/postcreate.mjs",
-        "gcloud run services update rowy-builder --service-account rowy-builder@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com --platform managed"
-      ]
+      "commands": ["node hooks/postcreate.mjs"]
     }
   }
 }
