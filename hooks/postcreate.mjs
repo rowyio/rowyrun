@@ -34,9 +34,10 @@ async function start() {
       ownerEmail: ownerEmail,
       firebaseConfig,
       rowyRunUrl,
-      service: {
+      services: {
         hooks: rowyHooksUrl,
         backend: rowyBackendUrl,
+        builder: process.env.SERVICE_URL,
       },
     });
     if (!success && message !== "project already exists")
