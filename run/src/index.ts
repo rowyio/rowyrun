@@ -63,7 +63,8 @@ app.post("/autoUpdateService", verifyRowyServiceRequest, async (req, res) => {
     );
     res.sendStatus(200);
   } catch (error) {
-    res.send({ error });
+    console.log({ error });
+    res.sendStatus(500).send({ error });
   }
 });
 app.get("/", rowyRedirect);
