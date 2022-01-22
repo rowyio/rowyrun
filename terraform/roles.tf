@@ -28,7 +28,7 @@ resource "google_project_iam_member" "rowy_backend_datastore_user_role" {
   project  = var.project
   role     = "roles/datastore.user"
   member =  "serviceAccount:${google_service_account.rowy_backend_serviceAccount.email}"
-  depends_on = [google_service_account.rowy_backend_serviceAccount.email]
+  depends_on = [google_service_account.rowy_backend_serviceAccount]
 }
 
 // rowy-hooks datastore user
@@ -45,7 +45,7 @@ resource "google_project_iam_member" "rowy_backend_storage_objectAdmin_role" {
   project  = var.project
   role     = "roles/storage.objectAdmin"
   member =  "serviceAccount:${google_service_account.rowy_backend_serviceAccount.email}"
-  depends_on = [google_service_account.rowy_backend_serviceAccount.email]
+  depends_on = [google_service_account.rowy_backend_serviceAccount]
 }
 
 // rowy-hooks storage objectAdmin
