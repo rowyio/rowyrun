@@ -72,9 +72,21 @@ resource "google_project_iam_member" "rowy_backend_firebase_admin_role" {
   depends_on = [google_service_account.rowy_backend_serviceAccount]
 }
 // rowy-builder editor
-resource "google_project_iam_member" "editor_role" {
+resource "google_project_iam_member" "rowy_builder_editor_role" {
   project  = var.project
   role     = "roles/editor"
   member = "serviceAccount:${google_service_account.rowy_builder_serviceAccount.email}"
   depends_on = [google_service_account.rowy_builder_serviceAccount] 
+}
+
+resource "google_project_iam_member" "default_service_editor_role" {
+  project  = var.project
+  role     = "roles/editor"
+  member = "serviceAccount:${var.project}@appspot.gserviceaccount.com" 
+}
+
+resource "google_project_iam_member" "default_service_secret_accessor_role" {
+  project  = var.project
+  role     = "roles/secretmanager.secretAccessor"
+  member = "serviceAccount:${var.project}@appspot.gserviceaccount.com" 
 }
