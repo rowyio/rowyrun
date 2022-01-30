@@ -78,13 +78,14 @@ resource "google_project_iam_member" "rowy_builder_editor_role" {
   member = "serviceAccount:${google_service_account.rowy_builder_serviceAccount.email}"
   depends_on = [google_service_account.rowy_builder_serviceAccount] 
 }
+// default service account editor
 
 resource "google_project_iam_member" "default_service_editor_role" {
   project  = var.project
   role     = "roles/editor"
   member = "serviceAccount:${var.project}@appspot.gserviceaccount.com" 
 }
-
+// default service account secret manager accessor 
 resource "google_project_iam_member" "default_service_secret_accessor_role" {
   project  = var.project
   role     = "roles/secretmanager.secretAccessor"
