@@ -5,12 +5,9 @@ import { getTerraformOutput } from "./terminalUtils.mjs";
 async function start() {
   try {
     const terraformOutput = await getTerraformOutput("terraform");
-    console.log({ terraformOutput });
     const { rowy_backend_url, rowy_hooks_url } = terraformOutput;
-
     const rowyRunUrl = rowy_backend_url.value;
     const rowyHooksUrl = rowy_hooks_url.value;
-
     const update = {
       rowyRunBuildStatus: "COMPLETE",
       rowyRunUrl,
