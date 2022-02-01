@@ -21,6 +21,9 @@ gcloud services enable artifactregistry.googleapis.com
 gcloud services enable cloudbuild.googleapis.com
 gcloud services enable cloudfunctions.googleapis.com
 gcloud services enable firestore.googleapis.com
+gcloud services enable firebaserules.googleapis.com
+gcloud services enable firebasestorage.googleapis.com
+
 gcloud app create --region=$TF_VAR_firestore_region
 gcloud firestore databases create --region=$TF_VAR_firestore_region
 set -e
@@ -33,14 +36,16 @@ docker run --env-file <(env | grep TF_VAR) \
            -backend-config "bucket=$TF_VAR_tf_state_bucket" \
            -backend-config "prefix=$TF_VAR_application/$TF_VAR_environment"
 
-# delete existing cloud run services
+# delete old existing cloud run services
 set +e
-gcloud run services delete rowy-run -q
+gcloud run services delete rowy-run --region=$GOOGLE_CLOUD_REGION --project=$GOOGLE_CLOUD_PROJECT -q
 set -e
-set +e
-gcloud run services delete rowy-hooks -q
-set -e
-
+# set +e
+# gcloud run services delete rowy-hooks --region=$GOOGLE_CLOUD_REGION --project=$GOOGLE_CLOUD_PROJECT -q
+# set -e
+# set +e
+# gcloud run services delete rowy-backend --region=$GOOGLE_CLOUD_REGION --project=$GOOGLE_CLOUD_PROJECT -q
+# set -e
 # Terraform apply --auto-approve
 docker run --env-file <(env | grep TF_VAR) \
            -v "$(pwd)/terraform:/workpace" -w /workpace \
